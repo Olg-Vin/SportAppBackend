@@ -1,10 +1,13 @@
 package org.vinio.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@Builder
 @Data
 @Entity
 @Table(name = "events")
@@ -15,7 +18,8 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JsonBackReference  // Избегаем зацикливания при сериализации
+    private UserEntity user;
 
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
@@ -43,5 +47,34 @@ public class Event {
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    public Event() {
+
+    }
+
+    public Event(Long id, UserEntity user, LocalDateTime startTime, LocalDateTime endTime, String status, String title, String description, Integer calories, String category, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.user = user;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.status = status;
+        this.title = title;
+        this.description = description;
+        this.calories = calories;
+        this.category = category;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 
 }

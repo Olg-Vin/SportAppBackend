@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.vinio.entities.Event;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {

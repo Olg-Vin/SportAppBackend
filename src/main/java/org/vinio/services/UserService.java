@@ -2,7 +2,7 @@ package org.vinio.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.vinio.entities.User;
+import org.vinio.entities.UserEntity;
 import org.vinio.repositories.UserRepository;
 
 import java.util.List;
@@ -17,15 +17,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User saveUser(User user) {
+    public UserEntity saveUser(UserEntity user) {
         return userRepository.save(user);
     }
 
-    public Optional<User> findUserById(Long id) {
+    public Optional<UserEntity> findUserById(Long id) {
         return userRepository.findById(id);
     }
 
-    public User findUserByEmail(String email) {
+    public Optional<UserEntity> findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
@@ -33,7 +33,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public List<User> findAllUsers() {
+    public List<UserEntity> findAllUsers() {
         return userRepository.findAll();
     }
 }
