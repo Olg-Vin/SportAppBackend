@@ -39,7 +39,7 @@ public class EventController {
     }
 
     // Получение события по ID
-    @GetMapping("/dto/{id}")
+    @GetMapping(value = "/dto/{id}", produces = "application/json")
     public ResponseEntity<EventDTO> getEventDtoById(@PathVariable Long id) {
         Optional<Event> event = eventService.findEventById(id);
         EventDTO eventDTO = modelMapper.map(event, EventDTO.class);
@@ -47,7 +47,7 @@ public class EventController {
     }
 
     // Получение события по ID пользователя
-    @GetMapping("/user/deprecate/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<List<Event>> getEventByUserId(@PathVariable Long id) {
         System.out.println("!get request!");
         List<Event> events = eventService.findEventsByUserId(id);
@@ -57,7 +57,7 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user/dep/{id}")
     public ResponseEntity<Map<String, Event>> getEventsByUserId(@PathVariable Long id) {
         System.out.println("!get request!");
         List<Event> events = eventService.findEventsByUserId(id);
