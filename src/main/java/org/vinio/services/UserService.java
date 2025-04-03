@@ -29,8 +29,8 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(UserEntity user) {
+        userRepository.delete(user);
     }
 
     public List<UserEntity> findAllUsers() {

@@ -30,6 +30,12 @@ public class EventService {
         return eventRepository.findByUserId(userId);
     }
 
+    public List<Event> findEventsByUserEmail(String userEmail) {
+        System.out.println("i'm here");
+        System.out.println(eventRepository.findAllByUserEmail(userEmail));
+        return eventRepository.findAllByUserEmail(userEmail);
+    }
+
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
     }

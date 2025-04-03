@@ -63,6 +63,7 @@ public class JwtProvider {
         claims.put("roles", userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
 
+
         return Jwts
                 .builder()
                 .setClaims(claims)

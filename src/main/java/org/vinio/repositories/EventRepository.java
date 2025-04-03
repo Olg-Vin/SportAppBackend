@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByUserId(Long userId);
+    List<Event> findAllByUserEmail (String UserEmail);
 }

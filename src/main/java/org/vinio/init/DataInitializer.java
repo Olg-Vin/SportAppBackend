@@ -46,6 +46,7 @@ public class DataInitializer implements CommandLineRunner {
 
         // Создаем пользователей
         UserEntity user1 = new UserEntity();
+        user1.setName("Mimiler");
         user1.setEmail("testUser0@test.ru");
         user1.setPassword(passwordEncoder.encode("123456"));
         user1.setRoles(userRole);

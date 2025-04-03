@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeRequests(registry -> registry
                         .requestMatchers("/api/auth/**").permitAll()
-//                        .requestMatchers("/api/event/").authenticated()
+                        .requestMatchers("/api/event/").authenticated()
 //                        .requestMatchers("/api/user/").authenticated()
                         .anyRequest().permitAll())
 //                .authenticationProvider(authenticationProvider)
